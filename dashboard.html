@@ -3,200 +3,41 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>MickyChat - Painel Completo SPA</title>
+<title>MickyChat - Painel Completo</title>
 <style>
-  /* Reset básico */
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  body {
-    background: #12141a;
-    color: #e0e6f1;
-    height: 100vh;
-    display: flex;
-    overflow: hidden;
-  }
-  /* Sidebar */
-  .sidebar {
-    width: 260px;
-    background: #1f2233;
-    display: flex;
-    flex-direction: column;
-    padding-top: 30px;
-    position: fixed;
-    height: 100vh;
-    box-shadow: 2px 0 8px rgba(0,0,0,0.6);
-  }
-  .sidebar .logo {
-    font-weight: 900;
-    font-size: 1.8rem;
-    color: #00ffae;
-    text-align: center;
-    margin-bottom: 40px;
-    letter-spacing: 2px;
-    user-select: none;
-  }
-  .sidebar nav {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    padding-left: 20px;
-  }
-  .sidebar nav button {
-    background: transparent;
-    border: none;
-    color: #c1c9d8;
-    font-size: 1.1rem;
-    text-align: left;
-    padding: 12px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.3s ease, color 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .sidebar nav button:hover,
-  .sidebar nav button.active {
-    background: #00ffae;
-    color: #12141a;
-    font-weight: 700;
-  }
-  .sidebar nav button::before {
-    content: "•";
-    font-size: 1.4rem;
-    color: #00ffae;
-  }
-  .sidebar nav button.sair {
-    margin-top: auto;
-    margin-bottom: 20px;
-    font-weight: 700;
-    color: #ff3c3c;
-  }
-  main {
-    margin-left: 260px;
-    padding: 30px;
-    width: calc(100% - 260px);
-    height: 100vh;
-    overflow-y: auto;
-  }
-  h1 {
-    margin-bottom: 20px;
-    color: #00ffae;
-    letter-spacing: 1.2px;
-  }
-  section {
-    display: none;
-  }
-  section.active {
-    display: block;
-  }
-  .section-content {
-    background: #1f2233;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 8px rgba(0,255,174,0.3);
-  }
-  canvas {
-    max-width: 100%;
-    height: 300px;
-  }
-  /* Contatos */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 12px;
-  }
-  th, td {
-    border: 1px solid #2c2f3b;
-    padding: 8px 12px;
-    text-align: left;
-    color: #c1c9d8;
-  }
-  th {
-    background: #161b22;
-  }
-  tr:hover {
-    background: #00ffae33;
-  }
-  button.small {
-    padding: 6px 10px;
-    font-size: 0.9rem;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-  }
-  button.edit {
-    background-color: #0080ff;
-    color: white;
-  }
-  button.delete {
-    background-color: #ff3c3c;
-    color: white;
-  }
-  /* Formulários */
-  form > * {
-    display: block;
-    margin-bottom: 12px;
-    width: 100%;
-  }
-  input[type="text"], textarea, select {
-    padding: 8px 10px;
-    border-radius: 6px;
-    border: none;
-    background: #12141a;
-    color: #e0e6f1;
-  }
-  button.primary {
-    background-color: #00ffae;
-    border: none;
-    color: #12141a;
-    padding: 10px 16px;
-    border-radius: 6px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  button.primary:hover {
-    background-color: #00cc85;
-  }
-  /* Chat */
-  .chat-window {
-    max-width: 700px;
-    height: 400px;
-    background: #161b22;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-  }
-  .chat-messages {
-    flex: 1;
-    padding: 16px;
-    overflow-y: auto;
-    color: #c1c9d8;
-  }
-  .chat-input {
-    display: flex;
-    padding: 12px 16px;
-    border-top: 1px solid #2c2f3b;
-  }
-  .chat-input input {
-    flex: 1;
-    border: none;
-    border-radius: 4px;
-    padding: 10px;
-    font-size: 1rem;
-  }
-  .chat-input button {
-    margin-left: 12px;
-    background: #00ffae;
-    border: none;
-    color: #12141a;
-    padding: 10px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-  }
+  * { margin:0; padding:0; box-sizing:border-box; font-family:Segoe UI, sans-serif; }
+  body { display:flex; height:100vh; background:#12141a; color:#e0e6f1; overflow:hidden; }
+  .sidebar { width:260px; background:#1f2233; padding-top:30px; display:flex; flex-direction:column; box-shadow:2px 0 8px rgba(0,0,0,0.6); }
+  .sidebar .logo { font-size:1.8rem; font-weight:900; color:#00ffae; text-align:center; margin-bottom:40px; user-select:none;}
+  .sidebar nav { display:flex; flex-direction:column; gap:14px; padding-left:20px; }
+  .sidebar nav button { background:transparent; border:none; color:#c1c9d8; font-size:1.1rem; padding:12px 16px; border-radius:6px; text-align:left; cursor:pointer; transition:0.3s; display:flex; align-items:center; }
+  .sidebar nav button:hover, .sidebar nav button.active { background:#00ffae; color:#12141a; font-weight:700; }
+  .sidebar nav button::before { content:'•'; font-size:1.4rem; color:#00ffae; margin-right:8px; }
+  .sidebar nav button.sair { margin-top:auto; margin-bottom:20px; color:#ff3c3c; font-weight:700; }
+  main { margin-left:260px; padding:30px; width:calc(100% - 260px); height:100vh; overflow-y:auto; }
+  h1 { margin-bottom:20px; color:#00ffae; letter-spacing:1.2px; }
+  section { display:none; }
+  section.active { display:block; }
+  .section-content { background:#1f2233; padding:20px; border-radius:8px; box-shadow:0 0 8px rgba(0,255,174,0.3); margin-bottom:20px; }
+  canvas { max-width:100%; height:300px; }
+  table { width:100%; border-collapse:collapse; margin-top:12px; }
+  th,td { border:1px solid #2c2f3b; padding:8px 12px; text-align:left; color:#c1c9d8; }
+  th { background:#161b22; }
+  tr:hover { background:#00ffae33; }
+  button.small { padding:6px 10px; font-size:0.9rem; border-radius:4px; border:none; cursor:pointer; }
+  button.edit { background:#0080ff; color:#fff; }
+  button.delete { background:#ff3c3c; color:#fff; }
+  form > * { display:block; margin-bottom:12px; width:100%; }
+  input[type=text], textarea, select { padding:8px 10px; border-radius:6px; border:none; background:#12141a; color:#e0e6f1; }
+  button.primary { background:#00ffae; border:none; color:#12141a; padding:10px 16px; border-radius:6px; font-weight:700; cursor:pointer; transition:0.3s; }
+  button.primary:hover { background:#00cc85; }
+  .chat-window { background:#161b22; border-radius:8px; display:flex; flex-direction:column; height:400px; max-width:700px; }
+  .chat-messages { flex:1; padding:16px; overflow-y:auto; color:#c1c9d8; }
+  .chat-input { display:flex; padding:12px 16px; border-top:1px solid #2c2f3b; }
+  .chat-input input { flex:1; border:none; border-radius:4px; padding:10px; font-size:1rem; }
+  .chat-input button { margin-left:12px; background:#00ffae; border:none; color:#12141a; padding:10px 16px; border-radius:6px; cursor:pointer;}
+  #modalFunil { display:none; background:#0d1117cc; position:fixed; inset:0; justify-content:center; align-items:center; }
+  #modalFunil form { background:#1f2233; padding:20px; border-radius:8px; width:320px;}
 </style>
 </head>
 <body>
@@ -231,9 +72,14 @@
     <section id="conexao">
       <h1>Conexão</h1>
       <div class="section-content">
-        <p>Status da conexão: <strong id="statusConexao">Conectado ✅</strong></p>
-        <p>Última sincronização: <strong id="ultimaSync">Agora há pouco</strong></p>
-        <button id="btnReconectar" class="primary">Reconectar</button>
+        <p>Status: <strong id="statusConexao">Desconectado ❌</strong></p>
+        <p>Tipo de conexão: <strong id="tipoConexao">—</strong></p>
+        <p>Última sincronização: <strong id="ultimaSync">—</strong></p>
+        <div style="text-align:center; margin:20px 0;">
+          <img id="qrConexao" src="https://via.placeholder.com/200?text=QR+Code" alt="QR Code" style="width:200px; height:200px; background:#20232a;" />
+        </div>
+        <button id="btnConectar" class="primary">Conectar QR</button>
+        <button id="btnDesconectar" class="primary" style="background:#ff3c3c; margin-left:8px;">Desconectar</button>
       </div>
     </section>
 
@@ -241,20 +87,8 @@
     <section id="funis">
       <h1>Funis</h1>
       <div class="section-content">
-        <button id="addFunilBtn" class="primary" style="margin-bottom:16px;">Adicionar Funil</button>
-        <div id="funisList">
-          <!-- Lista de funis -->
-        </div>
-        <!-- Modal simples para adicionar/editar funil -->
-        <div id="modalFunil" style="display:none; background:#0d1117cc; position:fixed; inset:0; justify-content:center; align-items:center;">
-          <form id="formFunil" style="background:#1f2233; padding:20px; border-radius:8px; width:320px;">
-            <h3 id="modalFunilTitle">Novo Funil</h3>
-            <input type="text" id="funilNome" placeholder="Nome do funil" required />
-            <textarea id="funilDescricao" placeholder="Descrição" rows="3"></textarea>
-            <button type="submit" class="primary">Salvar</button>
-            <button type="button" id="fecharModalFunil" style="margin-left:10px; background:#ff3c3c;">Cancelar</button>
-          </form>
-        </div>
+        <button id="addFunilBtn" class="primary">Adicionar Funil</button>
+        <div id="funisList" style="margin-top:12px;"></div>
       </div>
     </section>
 
@@ -262,11 +96,11 @@
     <section id="ia">
       <h1>IA</h1>
       <div class="section-content">
-        <p>Chat com respostas automáticas simples.</p>
+        <p>Chatbot para suporte automático</p>
         <div class="chat-window" id="chatIA">
           <div class="chat-messages" id="chatIAMessages"></div>
           <div class="chat-input">
-            <input type="text" id="chatIAInput" placeholder="Escreve aqui..." />
+            <input type="text" id="chatIAInput" placeholder="Perguntar..." />
             <button id="chatIASend">Enviar</button>
           </div>
         </div>
@@ -278,14 +112,12 @@
       <h1>Disparos</h1>
       <div class="section-content">
         <form id="formDisparo">
-          <input type="text" id="disparoNome" placeholder="Nome da campanha" required />
-          <textarea id="disparoMensagem" placeholder="Mensagem para enviar" rows="3" required></textarea>
+          <input type="text" id="disparoNome" placeholder="Nome da campanha" required/>
+          <textarea id="disparoMensagem" placeholder="Mensagem..." rows="3" required></textarea>
           <button type="submit" class="primary">Criar Disparo</button>
         </form>
-        <h3>Campanhas Ativas</h3>
-        <div id="campanhasDisparoList">
-          <!-- Campanhas listadas aqui -->
-        </div>
+        <h3>Campanhas</h3>
+        <div id="campanhasDisparoList"></div>
       </div>
     </section>
 
@@ -293,14 +125,10 @@
     <section id="contatos">
       <h1>Contatos</h1>
       <div class="section-content">
-        <input type="text" id="pesquisaContato" placeholder="Pesquisar contato..." style="padding:8px; margin-bottom:12px; border-radius:6px; border:none; background:#12141a; color:#e0e6f1; width:100%;" />
+        <input type="text" id="pesquisaContato" placeholder="Pesquisar..." />
         <table>
-          <thead>
-            <tr><th>Nome</th><th>Telefone</th><th>Ações</th></tr>
-          </thead>
-          <tbody id="listaContatosBody">
-            <!-- contatos aqui -->
-          </tbody>
+          <thead><tr><th>Nome</th><th>Telefone</th><th>Ações</th></tr></thead>
+          <tbody id="listaContatosBody"></tbody>
         </table>
       </div>
     </section>
@@ -308,17 +136,15 @@
     <!-- Bate-papo -->
     <section id="batepapo">
       <h1>Bate-papo</h1>
-      <div class="section-content" style="display:flex; gap:16px; max-width: 900px;">
-        <div style="width: 280px; background:#161b22; border-radius:8px; padding:10px; height:400px; overflow-y:auto;">
+      <div class="section-content" style="display:flex; gap:16px;">
+        <div style="width:280px; background:#161b22; border-radius:8px; padding:10px; height:400px; overflow-y:auto;">
           <h3>Contatos</h3>
-          <ul id="chatContatos" style="list-style:none; padding:0; margin:0; color:#c1c9d8; cursor:pointer;">
-            <!-- contatos para chat -->
-          </ul>
+          <ul id="chatContatos" style="list-style:none;"></ul>
         </div>
-        <div class="chat-window" style="flex:1; display:flex; flex-direction:column; height:400px;">
-          <div class="chat-messages" id="chatMensagens" style="flex:1;"></div>
+        <div class="chat-window">
+          <div class="chat-messages" id="chatMensagens"></div>
           <div class="chat-input">
-            <input type="text" id="chatInput" placeholder="Escreve a mensagem..." />
+            <input type="text" id="chatInput" placeholder="Mensagem..." />
             <button id="chatEnviar">Enviar</button>
           </div>
         </div>
@@ -329,374 +155,194 @@
     <section id="sair">
       <h1>Sair</h1>
       <div class="section-content">
-        <p>Clique no botão para terminar a sessão.</p>
+        <p>Encerrar sessão</p>
         <button id="btnSair" class="primary" style="background:#ff3c3c;">Sair</button>
       </div>
     </section>
+
+    <!-- Modal Funil -->
+    <div id="modalFunil">
+      <form id="formFunil">
+        <h3 id="modalFunilTitle">Novo Funil</h3>
+        <input type="text" id="funilNome" placeholder="Nome do funil" required/>
+        <textarea id="funilDescricao" placeholder="Descrição" rows="3"></textarea>
+        <button type="submit" class="primary">Salvar</button>
+        <button type="button" id="fecharModalFunil" style="background:#ff3c3c;">Cancelar</button>
+      </form>
+    </div>
   </main>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-  // SPA Navegação
-  const buttons = document.querySelectorAll('.menu-btn');
-  const sections = document.querySelectorAll('main section');
+/* -- Navegação SPA -- */
+const buttons = document.querySelectorAll('.menu-btn');
+const sections = document.querySelectorAll('main section');
+buttons.forEach(btn=>btn.onclick=()=>{
+  buttons.forEach(b=>b.classList.remove('active'));
+  sections.forEach(s=>s.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(btn.dataset.section).classList.add('active');
+});
 
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      buttons.forEach(b => b.classList.remove('active'));
-      sections.forEach(s => s.classList.remove('active'));
-
-      btn.classList.add('active');
-      const sec = document.getElementById(btn.dataset.section);
-      if (sec) sec.classList.add('active');
-    });
-  });
-
-  // --- Métricas - Gráfico ---
-  const ctx = document.getElementById('graficoMensagens').getContext('2d');
-  const graficoMensagens = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
-      datasets: [{
-        label: 'Mensagens enviadas',
-        data: [1500, 1800, 1700, 2000, 2200, 2100, 2040],
-        fill: false,
-        borderColor: '#00ffae',
-        backgroundColor: '#00ffae',
-        tension: 0.3,
-        pointRadius: 5,
-        pointHoverRadius: 8,
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          labels: {
-            color: '#e0e6f1',
-            font: {
-              size: 14
-            }
-          }
-        }
-      },
-      scales: {
-        x: {
-          ticks: {
-            color: '#c1c9d8'
-          },
-          grid: {
-            color: '#2c2f3b'
-          }
-        },
-        y: {
-          ticks: {
-            color: '#c1c9d8'
-          },
-          grid: {
-            color: '#2c2f3b'
-          },
-          beginAtZero: true
-        }
-      }
-    }
-  });
-
-  // --- Conexão ---
-  document.getElementById('btnReconectar').addEventListener('click', () => {
-    const statusEl = document.getElementById('statusConexao');
-    const syncEl = document.getElementById('ultimaSync');
-    statusEl.textContent = 'Reconectando... ⏳';
-    syncEl.textContent = '';
-    setTimeout(() => {
-      statusEl.textContent = 'Conectado ✅';
-      syncEl.textContent = 'Agora há pouco';
-    }, 2000);
-  });
-
-  // --- Funis ---
-  let funis = [
-    {id: 1, nome: "Funil de Vendas", descricao: "Funil principal para vendas de produtos."},
-    {id: 2, nome: "Funil de Boas-vindas", descricao: "Automatizar mensagens iniciais."}
-  ];
-  const funisList = document.getElementById('funisList');
-  const modalFunil = document.getElementById('modalFunil');
-  const formFunil = document.getElementById('formFunil');
-  const funilNome = document.getElementById('funilNome');
-  const funilDescricao = document.getElementById('funilDescricao');
-  const modalFunilTitle = document.getElementById('modalFunilTitle');
-  const fecharModalFunil = document.getElementById('fecharModalFunil');
-  let editFunilId = null;
-
-  function renderFunis() {
-    funisList.innerHTML = '';
-    if(funis.length === 0) funisList.innerHTML = '<p>Nenhum funil criado.</p>';
-    funis.forEach(f => {
-      const div = document.createElement('div');
-      div.style = 'background:#282c3a; padding:12px; margin-bottom:12px; border-radius:6px; box-shadow: 0 0 6px #00ffae33;';
-      div.innerHTML = `
-        <strong>${f.nome}</strong><br>
-        <small>${f.descricao || ''}</small><br>
-        <button class="small edit" data-id="${f.id}">Editar</button>
-        <button class="small delete" data-id="${f.id}">Apagar</button>
-      `;
-      funisList.appendChild(div);
-    });
-    // Eventos editar/apagar
-    document.querySelectorAll('button.edit').forEach(btn => {
-      btn.onclick = () => {
-        const id = Number(btn.dataset.id);
-        const funil = funis.find(f => f.id === id);
-        if(funil){
-          editFunilId = id;
-          funilNome.value = funil.nome;
-          funilDescricao.value = funil.descricao;
-          modalFunilTitle.textContent = 'Editar Funil';
-          modalFunil.style.display = 'flex';
-        }
-      };
-    });
-    document.querySelectorAll('button.delete').forEach(btn => {
-      btn.onclick = () => {
-        const id = Number(btn.dataset.id);
-        funis = funis.filter(f => f.id !== id);
-        renderFunis();
-      };
-    });
+/* -- Métricas: gráfico -- */
+new Chart(document.getElementById('graficoMensagens').getContext('2d'), {
+  type:'line',
+  data:{
+    labels:['Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
+    datasets:[{ label:'Mensagens enviadas', data:[1500,1800,1700,2000,2200,2100,2040],
+      borderColor:'#00ffae', backgroundColor:'#00ffae', tension:0.3, pointRadius:5 }]
+  },
+  options:{
+    scales:{ x:{ ticks:{color:'#c1c9d8'} , grid:{color:'#2c2f3b'} },
+             y:{ ticks:{color:'#c1c9d8'}, grid:{color:'#2c2f3b'}, beginAtZero:true }},
+    plugins:{ legend:{ labels:{ color:'#e0e6f1' } } }, responsive:true
   }
+});
+
+/* -- Conexão -- */
+const statusEl = document.getElementById('statusConexao');
+const tipoEl = document.getElementById('tipoConexao');
+const syncEl = document.getElementById('ultimaSync');
+document.getElementById('btnConectar').onclick = ()=>{
+  statusEl.textContent='A carregar QR...';
+  tipoEl.textContent='—';
+  syncEl.textContent='—';
+  setTimeout(()=>{
+    statusEl.textContent='Conectado ✅';
+    tipoEl.textContent='WhatsApp Web';
+    syncEl.textContent=new Date().toLocaleString();
+  },3000);
+};
+document.getElementById('btnDesconectar').onclick = ()=>{
+  statusEl.textContent='Desconectado ❌';
+  tipoEl.textContent='—';
+  syncEl.textContent='—';
+};
+
+/* -- Funis -- */
+let funis=[{id:1,nome:"Funil de Vendas",descricao:"Gatilho de boas-vindas"}];
+const funisList=document.getElementById('funisList');
+const modalFunil=document.getElementById('modalFunil');
+const formFunil=document.getElementById('formFunil');
+let editFunilId=null;
+function renderFunis(){
+  funisList.innerHTML='';
+  funis.forEach(f=>{
+    const div=document.createElement('div');
+    div.style='background:#282c3a; padding:12px; margin-bottom:12px; border-radius:6px;';
+    div.innerHTML=`<strong>${f.nome}</strong><p>${f.descricao}</p>
+      <button class="small edit" data-id="${f.id}">Editar</button>
+      <button class="small delete" data-id="${f.id}">Apagar</button>`;
+    funisList.append(div);
+  });
+  document.querySelectorAll('.edit').forEach(b=>b.onclick=()=>{/*...*/});
+  document.querySelectorAll('.delete').forEach(b=>b.onclick=e=>{funis=funis.filter(f=>f.id!=e.target.dataset.id);renderFunis();});
+}
+renderFunis();
+document.getElementById('addFunilBtn').onclick=()=>{
+  editFunilId=null; document.getElementById('modalFunilTitle').textContent='Novo Funil'; modalFunil.style.display='flex';
+};
+document.getElementById('fecharModalFunil').onclick=()=>modalFunil.style.display='none';
+formFunil.onsubmit=e=>{
+  e.preventDefault();
+  const n=document.getElementById('funilNome').value.trim();
+  const d=document.getElementById('funilDescricao').value.trim();
+  if(editFunilId){ let f=funis.find(x=>x.id===editFunilId); f.nome=n; f.descricao=d; }
+  else funis.push({id:Date.now(),nome:n,descricao:d});
   renderFunis();
+  modalFunil.style.display='none';
+};
 
-  document.getElementById('addFunilBtn').onclick = () => {
-    editFunilId = null;
-    funilNome.value = '';
-    funilDescricao.value = '';
-    modalFunilTitle.textContent = 'Novo Funil';
-    modalFunil.style.display = 'flex';
-  };
-  fecharModalFunil.onclick = () => {
-    modalFunil.style.display = 'none';
-  };
-  formFunil.onsubmit = (e) => {
-    e.preventDefault();
-    const nome = funilNome.value.trim();
-    const desc = funilDescricao.value.trim();
-    if(!nome) return alert('O nome é obrigatório.');
-    if(editFunilId){
-      const f = funis.find(f => f.id === editFunilId);
-      if(f){
-        f.nome = nome;
-        f.descricao = desc;
-      }
-    } else {
-      funis.push({id: Date.now(), nome, descricao: desc});
-    }
-    renderFunis();
-    modalFunil.style.display = 'none';
-  };
+/* -- IA -- */
+const iaMessages=document.getElementById('chatIAMessages');
+document.getElementById('chatIASend').onclick=()=>{
+  const text=document.getElementById('chatIAInput').value.trim();
+  if(!text) return;
+  iaMessages.innerHTML+=`<p>Tu: ${text}</p>`;
+  document.getElementById('chatIAInput').value='';
+  setTimeout(()=>iaMessages.innerHTML+=`<p>MickyChat IA: Resposta automática</p>`,500);
+};
 
-  // --- IA Chat ---
-  const chatIAMessages = document.getElementById('chatIAMessages');
-  const chatIAInput = document.getElementById('chatIAInput');
-  const chatIASend = document.getElementById('chatIASend');
-
-  function iaResponder(text) {
-    text = text.toLowerCase();
-    if(text.includes('olá') || text.includes('oi')){
-      return 'Olá! Como posso ajudar?';
-    }
-    if(text.includes('mickychat')){
-      return 'Sou o assistente virtual do MickyChat!';
-    }
-    if(text.includes('adeus') || text.includes('tchau')){
-      return 'Até mais! Volte sempre.';
-    }
-    return 'Não entendi. Podes reformular?';
-  }
-
-  chatIASend.onclick = () => {
-    const msg = chatIAInput.value.trim();
-    if(!msg) return;
-    addIAText('Tu: ' + msg);
-    chatIAInput.value = '';
-    setTimeout(() => {
-      addIAText('MickyChat IA: ' + iaResponder(msg));
-    }, 700);
-  };
-  chatIAInput.addEventListener('keydown', e => {
-    if(e.key === 'Enter') chatIASend.click();
+/* -- Disparos -- */
+let campanhas=[{id:1, nome:'Promoção', mensagem:'Gostas?'}];
+function renderCampanhas(){
+  const cont=document.getElementById('campanhasDisparoList');
+  cont.innerHTML='';
+  campanhas.forEach(c=>{
+    const d=document.createElement('div');
+    d.style='background:#282c3a; padding:12px; margin-bottom:12px; border-radius:6px;';
+    d.innerHTML=`<strong>${c.nome}</strong><p>${c.mensagem}</p>`;
+    cont.append(d);
   });
-
-  function addIAText(text) {
-    const p = document.createElement('p');
-    p.textContent = text;
-    chatIAMessages.appendChild(p);
-    chatIAMessages.scrollTop = chatIAMessages.scrollHeight;
-  }
-
-  // --- Disparos ---
-  let campanhas = [
-    {id:1, nome:'Promoção Verão', mensagem:'Aproveita a promoção especial!'},
-    {id:2, nome:'Boas-vindas', mensagem:'Obrigado por te juntares a nós!'}
-  ];
-  const formDisparo = document.getElementById('formDisparo');
-  const campanhasDisparoList = document.getElementById('campanhasDisparoList');
-
-  function renderCampanhas() {
-    campanhasDisparoList.innerHTML = '';
-    if(campanhas.length === 0) campanhasDisparoList.innerHTML = '<p>Nenhuma campanha ativa.</p>';
-    campanhas.forEach(c => {
-      const div = document.createElement('div');
-      div.style = 'background:#282c3a; padding:12px; margin-bottom:12px; border-radius:6px; box-shadow: 0 0 6px #00ffae33;';
-      div.innerHTML = `<strong>${c.nome}</strong><p>${c.mensagem}</p>`;
-      campanhasDisparoList.appendChild(div);
-    });
-  }
+}
+renderCampanhas();
+document.getElementById('formDisparo').onsubmit=e=>{
+  e.preventDefault();
+  campanhas.push({id:Date.now(), nome:document.getElementById('disparoNome').value.trim(), mensagem:document.getElementById('disparoMensagem').value.trim()});
   renderCampanhas();
+  e.target.reset();
+};
 
-  formDisparo.onsubmit = e => {
-    e.preventDefault();
-    const nome = document.getElementById('disparoNome').value.trim();
-    const msg = document.getElementById('disparoMensagem').value.trim();
-    if(!nome || !msg) return alert('Nome e mensagem são obrigatórios.');
-    campanhas.push({id:Date.now(), nome, mensagem: msg});
-    renderCampanhas();
-    formDisparo.reset();
-  };
-
-  // --- Contatos ---
-  let contatos = [
-    {id:1, nome:'João Silva', telefone:'+258 82 123 4567'},
-    {id:2, nome:'Maria Fernandes', telefone:'+258 84 765 4321'},
-    {id:3, nome:'Pedro Santos', telefone:'+258 83 555 6677'}
-  ];
-  const listaContatosBody = document.getElementById('listaContatosBody');
-  const pesquisaContato = document.getElementById('pesquisaContato');
-
-  function renderContatos(filtro = '') {
-    listaContatosBody.innerHTML = '';
-    const filtroMinus = filtro.toLowerCase();
-    const filtrados = contatos.filter(c => c.nome.toLowerCase().includes(filtroMinus) || c.telefone.includes(filtro));
-    if(filtrados.length === 0) {
-      listaContatosBody.innerHTML = '<tr><td colspan="3" style="text-align:center; color:#888;">Nenhum contato encontrado.</td></tr>';
-      return;
-    }
-    filtrados.forEach(c => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td>${c.nome}</td>
-        <td>${c.telefone}</td>
-        <td>
-          <button class="small edit" data-id="${c.id}">Editar</button>
-          <button class="small delete" data-id="${c.id}">Apagar</button>
-        </td>
-      `;
-      listaContatosBody.appendChild(tr);
-    });
-    // Eventos editar/apagar
-    document.querySelectorAll('#listaContatosBody button.edit').forEach(btn => {
-      btn.onclick = () => {
-        alert('Editar contato ID: ' + btn.dataset.id + ' (implementar)');
-      };
-    });
-    document.querySelectorAll('#listaContatosBody button.delete').forEach(btn => {
-      btn.onclick = () => {
-        const id = Number(btn.dataset.id);
-        contatos = contatos.filter(c => c.id !== id);
-        renderContatos(pesquisaContato.value);
-      };
-    });
-  }
-  renderContatos();
-
-  pesquisaContato.addEventListener('input', e => {
-    renderContatos(e.target.value);
+/* -- Contatos -- */
+let contatos=[{id:1, nome:'João', telefone:'+258821234567'}];
+function renderContatos(filter=''){
+  const body=document.getElementById('listaContatosBody');
+  body.innerHTML='';
+  contatos.filter(c=>c.nome.toLowerCase().includes(filter.toLowerCase())).forEach(c=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td>${c.nome}</td><td>${c.telefone}</td><td>
+      <button class="small delete" data-id="${c.id}">Apagar</button></td>`;
+    body.append(tr);
   });
+  document.querySelectorAll('.delete').forEach(btn=>btn.onclick=e=>{contatos=contatos.filter(c=>c.id!=e.target.dataset.id);renderContatos();});
+}
+renderContatos();
+document.getElementById('pesquisaContato').oninput=e=>renderContatos(e.target.value);
 
-  // --- Bate-papo ---
-  const chatContatos = document.getElementById('chatContatos');
-  const chatMensagens = document.getElementById('chatMensagens');
-  const chatInput = document.getElementById('chatInput');
-  const chatEnviar = document.getElementById('chatEnviar');
-
-  let chatAtual = null;
-  let conversas = {}; // idContato: [{text, fromUser, timestamp}, ...]
-
-  function renderChatContatos() {
-    chatContatos.innerHTML = '';
-    contatos.forEach(c => {
-      const li = document.createElement('li');
-      li.textContent = c.nome;
-      li.dataset.id = c.id;
-      li.style.padding = '8px 12px';
-      li.style.borderBottom = '1px solid #2c2f3b';
-      li.style.borderRadius = '4px';
-      li.style.cursor = 'pointer';
-      li.addEventListener('click', () => {
-        chatAtual = c.id;
-        renderChatMensagens();
-        highlightContato(chatAtual);
-      });
-      chatContatos.appendChild(li);
-    });
-  }
-  function highlightContato(id) {
-    [...chatContatos.children].forEach(li => {
-      li.style.backgroundColor = (Number(li.dataset.id) === id) ? '#00ffae33' : 'transparent';
-    });
-  }
-
-  function renderChatMensagens() {
-    chatMensagens.innerHTML = '';
-    if(!chatAtual){
-      chatMensagens.innerHTML = '<p style="color:#888;">Seleciona um contato para começar a conversar.</p>';
-      return;
-    }
-    const msgs = conversas[chatAtual] || [];
-    msgs.forEach(m => {
-      const p = document.createElement('p');
-      p.textContent = m.text;
-      p.style.marginBottom = '8px';
-      p.style.textAlign = m.fromUser ? 'right' : 'left';
-      p.style.background = m.fromUser ? '#00ffae' : '#282c3a';
-      p.style.color = m.fromUser ? '#12141a' : '#c1c9d8';
-      p.style.padding = '8px 12px';
-      p.style.borderRadius = '12px';
-      p.style.maxWidth = '75%';
-      p.style.marginLeft = m.fromUser ? 'auto' : '0';
-      chatMensagens.appendChild(p);
-    });
-    chatMensagens.scrollTop = chatMensagens.scrollHeight;
-  }
-
-  chatEnviar.onclick = () => {
-    if(!chatAtual) return alert('Seleciona um contato primeiro.');
-    const msg = chatInput.value.trim();
-    if(!msg) return;
-    if(!conversas[chatAtual]) conversas[chatAtual] = [];
-    conversas[chatAtual].push({text: msg, fromUser: true, timestamp: Date.now()});
-    chatInput.value = '';
+/* -- Bate‑papo -- */
+let conversas={};
+let chatAtual=null;
+const chatContatos=document.getElementById('chatContatos'), chatMensagens=document.getElementById('chatMensagens');
+function renderChatContatos(){
+  chatContatos.innerHTML='';
+  contatos.forEach(c=>{
+    const li=document.createElement('li');
+    li.textContent=c.nome;
+    li.dataset.id=c.id;
+    li.onclick=()=>{chatAtual=c.id; renderChatMensagens();}
+    chatContatos.append(li);
+  });
+}
+function renderChatMensagens(){
+  chatMensagens.innerHTML='';
+  if(!chatAtual) return chatMensagens.innerHTML='<p style="color:#888;">Seleciona contato.</p>';
+  (conversas[chatAtual]||=[]).forEach(m=>{
+    const p=document.createElement('p');
+    p.textContent=m.text;
+    p.style.textAlign=m.fromUser?'right':'left';
+    p.style.background=m.fromUser?'#00ffae':'#282c3a';
+    p.style.color=m.fromUser?'#12141a':'#c1c9d8';
+    p.style.padding='8px 12px'; p.style.borderRadius='12px'; 
+    chatMensagens.append(p);
+  });
+}
+renderChatContatos();
+document.getElementById('chatEnviar').onclick=()=>{
+  if(!chatAtual) return alert('Seleciona contato.');
+  const msg=document.getElementById('chatInput').value.trim();
+  if(!msg) return;
+  conversas[chatAtual]=conversas[chatAtual]||[];
+  conversas[chatAtual].push({text:msg,fromUser:true});
+  renderChatMensagens();
+  document.getElementById('chatInput').value='';
+  setTimeout(()=>{
+    conversas[chatAtual].push({text:'Responde: '+msg.split('').reverse().join(''), fromUser:false});
     renderChatMensagens();
-    // Resposta automática simulada
-    setTimeout(() => {
-      conversas[chatAtual].push({text: 'Resposta automática: ' + msg.split('').reverse().join(''), fromUser: false, timestamp: Date.now()});
-      renderChatMensagens();
-    }, 1000);
-  };
-  chatInput.addEventListener('keydown', e => {
-    if(e.key === 'Enter') chatEnviar.click();
-  });
-  renderChatContatos();
+  },1000);
+};
 
-  // --- Sair ---
-  document.getElementById('btnSair').onclick = () => {
-    if(confirm('Deseja realmente sair?')) {
-      alert('Sessão terminada. Voltando ao login...');
-      // Aqui redirecionar para index.html (login) ou logout real
-      // location.href = 'index.html';
-    }
-  };
+/* -- Logout -- */
+document.getElementById('btnSair').onclick=()=>{ if(confirm('Encerrar sessão?')) window.location.reload(); };
 </script>
-
 </body>
 </html>
