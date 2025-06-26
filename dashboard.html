@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MickyChat - Dashboard</title>
+<style>
+  /* Reset básico */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  body {
+    background: #12141a;
+    color: #e0e6f1;
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    width: 260px;
+    background: #1f2233;
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    position: fixed;
+    height: 100vh;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.6);
+  }
+
+  .sidebar .logo {
+    font-weight: 900;
+    font-size: 1.8rem;
+    color: #00ffae;
+    text-align: center;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+    user-select: none;
+  }
+
+  .sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding-left: 20px;
+  }
+
+  .sidebar nav button {
+    background: transparent;
+    border: none;
+    color: #c1c9d8;
+    font-size: 1.1rem;
+    text-align: left;
+    padding: 12px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .sidebar nav button:hover,
+  .sidebar nav button.active {
+    background: #00ffae;
+    color: #12141a;
+    font-weight: 700;
+  }
+
+  .sidebar nav button::before {
+    content: "•";
+    font-size: 1.4rem;
+    color: #00ffae;
+  }
+
+  .sidebar nav button.sair {
+    margin-top: auto;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: #ff3c3c;
+  }
+
+  main {
+    margin-left: 260px;
+    padding: 30px;
+    width: calc(100% - 260px);
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  h1 {
+    margin-bottom: 20px;
+    color: #00ffae;
+    letter-spacing: 1.2px;
+  }
+
+  section {
+    display: none;
+  }
+
+  section.active {
+    display: block;
+  }
+
+  .section-content {
+    background: #1f2233;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0,255,174,0.3);
+  }
+
+  /* Gráfico canvas */
+  canvas {
+    max-width: 100%;
+    height: 300px;
+  }
+</style>
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div class="logo">MickyChat</div>
+    <nav>
+      <button class="menu-btn active" data-section="metricas">Métricas</button>
+      <button class="menu-btn" data-section="conexao">Conexão</button>
+      <button class="menu-btn" data-section="funis">Funis</button>
+      <button class="menu-btn" data-section="ia">IA</button>
+      <button class="menu-btn" data-section="disparos">Disparos</button>
+      <button class="menu-btn" data-section="contatos">Contatos</button>
+      <button class="menu-btn" data-section="batepapo">Bate-papo</button>
+      <button class="menu-btn sair" data-section="sair">Sair</button>
+    </nav>
+  </aside>
+
+  <main>
+    <section id="metricas" class="active">
+      <h1>Métricas</h1>
+      <div class="section-content">
+        <p><strong>Mensagens enviadas:</strong> 12.340</p>
+        <p><strong>Contatos ativos:</strong> 1.150</p>
+        <p><strong>Campanhas ativas:</strong> 5</p>
+
+        <canvas id="graficoMensagens"></canvas>
+      </div>
+    </section>
+
+    <section id="conexao">
+      <h1>Conexão</h1>
+      <div class="section-content">
+        <p>Status da conexão: <strong>Conectado ✅</strong></p>
+        <p>Última sincronização: <strong>Agora há pouco</strong></p>
+        <button onclick="alert('Reconectando...')">Reconectar</button>
+      </div>
+    </section>
+
+    <section id="funis">
+      <h1>Funis</h1>
+      <div class="section-content">
+        <p>Aqui podes criar e gerir funis de vendas ou mensagens.</p>
+      </div>
+    </section>
+
+    <section id="ia">
+      <h1>IA</h1>
+      <div class="section-content">
+        <p>Área para interação com respostas automáticas e inteligência artificial.</p>
+      </div>
+    </section>
+
+    <section id="disparos">
+      <h1>Disparos</h1>
+      <div class="section-content">
+        <p>Simulador de envio automático de mensagens.</p>
+      </div>
+    </section>
+
+    <section id="contatos">
+      <h1>Contatos</h1>
+      <div class="section-content">
+        <p>Lista e gestão de contatos.</p>
+      </div>
+    </section>
+
+    <section id="batepapo">
+      <h1>Bate-papo</h1>
+      <div class="section-content">
+        <p>Chat em tempo real / simulado.</p>
+      </div>
+    </section>
+
+    <section id="sair">
+      <h1>Sair</h1>
+      <div class="section-content">
+        <p>Clique no botão para terminar a sessão.</p>
+        <button onclick="alert('Sessão terminada!')">Sair</button>
+      </div>
+    </section>
+  </main>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  // Navegação SPA
+  const buttons = document.querySelectorAll('.menu-btn');
+  const sections = document.querySelectorAll('main section');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      sections.forEach(s => s.classList.remove('active'));
+
+      btn.classList.add('active');
+      const sec = document.getElementById(btn.dataset.section);
+      if (sec) sec.classList.add('active');
+    });
+  });
+
+  // Gráfico de mensagens enviadas - Chart.js
+  const ctx = document.getElementById('graficoMensagens').getContext('2d');
+  const graficoMensagens = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+      datasets: [{
+        label: 'Mensagens enviadas',
+        data: [1500, 1800, 1700, 2000, 2200, 2100, 2040],
+        fill: false,
+        borderColor: '#00ffae',
+        backgroundColor: '#00ffae',
+        tension: 0.3,
+        pointRadius: 5,
+        pointHoverRadius: 8,
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          labels: {
+            color: '#e0e6f1',
+            font: {
+              size: 14
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: {
+            color: '#c1c9d8'
+          },
+          grid: {
+            color: '#2c2f3b'
+          }
+        },
+        y: {
+          ticks: {
+            color: '#c1c9d8'
+          },
+          grid: {
+            color: '#2c2f3b'
+          },
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
