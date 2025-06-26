@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MickyChat - Painel</title>
+<style>
+  /* Reset básico */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  body {
+    background: #12141a; /* fundo escuro diferente do ZapRápido */
+    color: #e0e6f1;
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    width: 260px;
+    background: #1f2233; /* azul escuro levemente acinzentado */
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    position: fixed;
+    height: 100vh;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.6);
+  }
+
+  .sidebar .logo {
+    font-weight: 900;
+    font-size: 1.8rem;
+    color: #00ffae; /* verde neon */
+    text-align: center;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+    user-select: none;
+  }
+
+  .sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding-left: 20px;
+  }
+
+  .sidebar nav button {
+    background: transparent;
+    border: none;
+    color: #c1c9d8;
+    font-size: 1.1rem;
+    text-align: left;
+    padding: 12px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .sidebar nav button:hover,
+  .sidebar nav button.active {
+    background: #00ffae;
+    color: #12141a;
+    font-weight: 700;
+  }
+
+  /* Ícones simples (pseudo) */
+  .sidebar nav button::before {
+    content: "•";
+    font-size: 1.4rem;
+    color: #00ffae;
+  }
+
+  /* Área principal */
+  main {
+    margin-left: 260px;
+    padding: 30px;
+    width: calc(100% - 260px);
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  h1 {
+    margin-bottom: 20px;
+    color: #00ffae;
+    letter-spacing: 1.2px;
+  }
+
+  section {
+    display: none;
+  }
+
+  section.active {
+    display: block;
+  }
+
+  /* Exemplo básico para cada secção */
+  .section-content {
+    background: #1f2233;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0,255,174,0.3);
+  }
+
+  /* Botão sair fixo no fim da sidebar */
+  .sidebar nav button.sair {
+    margin-top: auto;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: #ff3c3c;
+  }
+
+</style>
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div class="logo">MickyChat</div>
+    <nav>
+      <button class="menu-btn active" data-section="metricas">Métricas</button>
+      <button class="menu-btn" data-section="conexao">Conexão</button>
+      <button class="menu-btn" data-section="funis">Funis</button>
+      <button class="menu-btn" data-section="ia">IA</button>
+      <button class="menu-btn" data-section="disparos">Disparos</button>
+      <button class="menu-btn" data-section="contatos">Contatos</button>
+      <button class="menu-btn" data-section="batepapo">Bate-papo</button>
+      <button class="menu-btn sair" data-section="sair">Sair</button>
+    </nav>
+  </aside>
+
+  <main>
+    <section id="metricas" class="active">
+      <h1>Métricas</h1>
+      <div class="section-content">
+        <!-- Conteúdo simulado de métricas -->
+        <p>Número de mensagens enviadas: <strong>12.340</strong></p>
+        <p>Contatos ativos: <strong>1.150</strong></p>
+        <p>Campanhas ativas: <strong>5</strong></p>
+      </div>
+    </section>
+
+    <section id="conexao">
+      <h1>Conexão</h1>
+      <div class="section-content">
+        <p>Status da conexão: <strong>Conectado ✅</strong></p>
+        <p>Última sincronização: <strong>Agora há pouco</strong></p>
+        <button>Reconectar</button>
+      </div>
+    </section>
+
+    <section id="funis">
+      <h1>Funis</h1>
+      <div class="section-content">
+        <p>Aqui podes criar e gerir funis de vendas ou mensagens.</p>
+        <!-- Futuramente adicionar UI para funis -->
+      </div>
+    </section>
+
+    <section id="ia">
+      <h1>IA</h1>
+      <div class="section-content">
+        <p>Área para interação com respostas automáticas e inteligência artificial.</p>
+      </div>
+    </section>
+
+    <section id="disparos">
+      <h1>Disparos</h1>
+      <div class="section-content">
+        <p>Simulador de envio automático de mensagens.</p>
+      </div>
+    </section>
+
+    <section id="contatos">
+      <h1>Contatos</h1>
+      <div class="section-content">
+        <p>Lista e gestão de contatos.</p>
+      </div>
+    </section>
+
+    <section id="batepapo">
+      <h1>Bate-papo</h1>
+      <div class="section-content">
+        <p>Chat em tempo real / simulado.</p>
+      </div>
+    </section>
+
+    <section id="sair">
+      <h1>Sair</h1>
+      <div class="section-content">
+        <p>Clique no botão para terminar a sessão.</p>
+        <button onclick="alert('Sessão terminada!');">Sair</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // JS para navegação SPA básica
+    const buttons = document.querySelectorAll('.menu-btn');
+    const sections = document.querySelectorAll('main section');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove active dos botões e seções
+        buttons.forEach(b => b.classList.remove('active'));
+        sections.forEach(s => s.classList.remove('active'));
+
+        // Adiciona active ao botão e seção clicados
+        btn.classList.add('active');
+        const sec = document.getElementById(btn.dataset.section);
+        if (sec) sec.classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
